@@ -201,13 +201,114 @@ var organizations = [
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
 	<div id="org_table"></div>
-	
+
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
 console.log(organizations[0]);
 
 // Your JavaScript code goes here
+var body = document.getElementById("org_table");
+var tbl = document.createElement("table");
+var tblBody = document.createElement("tblBody");
+var row = document.createElement("tr");
+var cell = document.createElement("td");
+var cellText = document.createTextNode("Number of Non-Profit Organizations");
+var countNprofit = 0;
+var countYears = 0;
+var countNAmerica = 0;
+var countTransport = 0;
+var countIncome = 0;
+
+cell.appendChild(cellText);
+row.appendChild(cell);
+
+cell = document.createElement("td");
+
+organizations.forEach(myFunction);
+
+cellText = document.createTextNode(countNprofit);
+cell.appendChild(cellText);
+row.appendChild(cell);
+tblBody.appendChild(row);
+
+//years row
+row = document.createElement("tr");
+cell = document.createElement("td");
+cellText = document.createTextNode("Number of Organizations < 10 Years Old");
+cell.appendChild(cellText);
+row.appendChild(cell);
+
+cell = document.createElement("td");
+cellText = document.createTextNode(countYears);
+cell.appendChild(cellText);
+row.appendChild(cell);
+tblBody.appendChild(row);
+
+//North America data
+row = document.createElement("tr");
+cell = document.createElement("td");
+cellText = document.createTextNode("Number of Organizations in N. America");
+cell.appendChild(cellText);
+row.appendChild(cell);
+
+cell = document.createElement("td");
+cellText = document.createTextNode(countNAmerica);
+cell.appendChild(cellText);
+row.appendChild(cell);
+tblBody.appendChild(row);
+
+//transportation type data
+row = document.createElement("tr");
+cell = document.createElement("td");
+cellText = document.createTextNode("Number of Organizations w/ Transportation Data Type");
+cell.appendChild(cellText);
+row.appendChild(cell);
+
+cell = document.createElement("td");
+cellText = document.createTextNode(countTransport);
+cell.appendChild(cellText);
+row.appendChild(cell);
+tblBody.appendChild(row);
+
+//income
+row = document.createElement("tr");
+cell = document.createElement("td");
+cellText = document.createTextNode("Number of Organizations with High Income");
+cell.appendChild(cellText);
+row.appendChild(cell);
+
+cell = document.createElement("td");
+cellText = document.createTextNode(countIncome);
+cell.appendChild(cellText);
+row.appendChild(cell);
+tblBody.appendChild(row);
+
+tbl.appendChild(tblBody);
+body.appendChild(tbl);
+tbl.setAttribute("border", "12");
+
+
+function myFunction(value){
+	if (value["Organization Type"] == "Nonprofit") {
+		countNprofit = countNprofit + 1;
+	}
+	if (value["Founding Year"] > 2008) {
+		countYears = countYears + 1;
+	}
+	if (value["Region"] == "North America") {
+		countNAmerica = countNAmerica + 1;
+	}
+	if (value["Type of Data Used"] == "Transportation") {
+		countTransport = countTransport + 1;
+	}
+	if (value["Country Income Level"] == "High income") {
+		countIncome = countIncome + 1;
+	}
+}
+
+
+cellText = document.createTextNode();
 
 
 </script>
